@@ -1,0 +1,117 @@
+.coins {
+  padding: 1rem;
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0 0 0 1rem;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #4f5b7e, #252f48);
+  box-shadow: 0 4px 12px transparentize(#000000, .6);
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  overflow: hidden;
+
+  &--wallet {
+    min-width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, #957fed, #fc74b0);
+
+    h2 {
+      text-transform: uppercase;
+    }
+  }
+
+  &__chart, &__info, &__data { flex: 1; }
+
+  &__chart {
+    position: relative;
+    padding: 0.5rem 0 0;
+    align-self: flex-end;
+
+    svg {
+      width: 100%;
+    }
+
+    circle {
+      opacity: 0;
+    }
+
+    path {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__icon {
+    img {
+      filter: invert(0.9);
+      width: 60px;
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    bottom: .2rem;
+    width: 100%;
+    text-align: center;
+    font-size: .8rem;
+  }
+
+  &__info {
+    p {
+      color: $grey;
+      font-size: 1rem;
+    }
+  }
+
+  &__qty {
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: $grey;
+  }
+}
+
+@media only screen and (min-width: $mq-M)  {
+  .coins {
+    padding: 4rem;
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+
+  .coin {
+    flex: 1;
+    flex-direction: column;
+    padding: 1rem 0 0;
+
+    .btn {
+      background: #252f48;
+    }
+
+    &__chart circle {
+      opacity: 1;
+    }
+
+    &--wallet {
+      flex-direction: row;
+      padding: 1rem;
+      grid-column: 1 / -1;
+      background: transparent;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    &__info {
+      margin: 1rem 0;
+    }
+  }
+}

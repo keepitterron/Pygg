@@ -1,0 +1,31 @@
+.edit {
+  padding: 1rem;
+  min-width: 25rem;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #4f5b7e, #252f48);
+  box-shadow: 0 4px 12px transparentize(#000000, .6);
+
+  h2 {
+    margin: 0 0 1rem;
+  }
+
+  &__field {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    label {
+      flex: 2;
+    }
+
+    input {
+      flex: 1;
+      padding: 0.6rem;
+      font-size: .8rem;
+      border-radius: 5px;
+      border: 1px solid $grey;
+
+    }
+  }
+}
