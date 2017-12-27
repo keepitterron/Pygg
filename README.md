@@ -7,16 +7,16 @@ Your crypto coins portfolio tracker.
 `yarn start`
 
 ## Roadmap app
-[ ] Make use of buy unitary price
-[ ] Coin details page
+- [ ] Make use of buy unitary price
+- [ ] Coin details page
 
 ## Roadmap Dev
-[ ] Deploy as github page
-[ ] Cleanup css
-[ ] Unit Test coverage
-[ ] Snapshot testing
-[ ] GraphQL
-[ ] Save data on remote for portability
-[ ] Use an auth mechanism for it
-[ ] Make it configurable
-[ ] Typescript?
+- [ ] Deploy as github page
+- [ ] Cleanup css
+- [ ] Unit Test coverage
+- [ ] Snapshot testing
+- [ ] GraphQL
+- [ ] Save data on remote for portability
+- [ ] Use an auth mechanism for it
+- [ ] Make it configurable
+- [ ] Typescript?
