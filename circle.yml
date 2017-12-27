@@ -1,0 +1,21 @@
+general:
+  artifacts:
+    - "dist"
+
+machine:
+  node:
+    version: $(cat $HOME/$CIRCLE_PROJECT_REPONAME/.nvmrc)
+
+dependencies:
+  cache_directories:
+    - ~/.cache/yarn
+  override:
+    - yarn install
+
+test:
+  pre:
+    - yarn lint
+  override:
+    - JEST_JUNIT_OUTPUT=$CIRCLE_TEST_REPORTS/jest/junit.xml
+      yarn test:ci --
+      --coverageDirectory=$CIRCLE_TEST_REPORTS/coverage/
