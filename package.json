@@ -9,6 +9,7 @@
     "format": "prettier-eslint --print-width 120 --write \"src/**/*.js\"",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:ci": "jest --testResultsProcessor=jest-junit --coverage",
     "start": "node fuse",
     "build": "node fuse dist"
   },
@@ -35,6 +36,7 @@
     "fuse-box": "^2.5.0-beta.1",
     "husky": "^0.14.3",
     "jest": "^22.0.3",
+    "jest-junit": "^3.4.1",
     "node-sass": "^4.7.2",
     "prettier-eslint-cli": "^4.6.1",
     "validate-commit-msg": "^2.14.0"
