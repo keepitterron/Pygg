@@ -40,5 +40,8 @@
     "node-sass": "^4.7.2",
     "prettier-eslint-cli": "^4.6.1",
     "validate-commit-msg": "^2.14.0"
+  },
+  "jest": {
+    "setupFiles": ["./src/app/__tests__/setup/mocks.js"]
   }
 }

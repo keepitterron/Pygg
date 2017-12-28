@@ -1,5 +1,6 @@
 import ccAdapter from './ccAdapter';
-import storageAdapter from './storage';
+import Storage from './storage';
+const storageAdapter = new Storage();
 
 export default class Api {
   constructor(adapter, storage) {
@@ -21,7 +22,7 @@ export default class Api {
   }
 
   promiseFromStorage(suffix) {
-    const data = this.storage.get(suffix);
+    const data = this.storage.fetch(suffix);
     if(!data) return;
     if(this.isStale(data.ts, this.mapper.expire(suffix))) return;
     if(data.data) return Promise.resolve(data.data);

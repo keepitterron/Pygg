@@ -16,7 +16,7 @@ describe('Api', () => {
     };
     storage = {
       save: jest.fn(),
-      get: jest.fn(),
+      fetch: jest.fn(),
     };
 
     api = new Api(adapter, storage);
@@ -48,7 +48,7 @@ describe('Api', () => {
 
     it('uses the mapper to fetch data from the api adapter', () => {
       api.fetchDataFor('list', 'bar');
-      expect(storage.get).toBeCalledWith('list');
+      expect(storage.fetch).toBeCalledWith('list');
       expect(api.withStorage).toBeCalledWith('list');
       expect(adapter.coinList).toBeCalledWith('bar');
     })
@@ -64,7 +64,7 @@ describe('Api', () => {
     it('returns a promise with data from storage', (done) => {
       const data = ['foo'];
       api.isStale = () => false;
-      storage.get = () => ({data});
+      storage.fetch = () => ({data});
 
       api.promiseFromStorage('list').then((d) => {
         expect(d).toEqual(data);
@@ -77,7 +77,7 @@ describe('Api', () => {
     });
 
     it('returns void if cache is stale', () => {
-      storage.get = () => ({data: 'foo'});
+      storage.fetch = () => ({data: 'foo'});
       api.isStale = () => true;
       expect(api.promiseFromStorage('list')).toBeUndefined();
     });

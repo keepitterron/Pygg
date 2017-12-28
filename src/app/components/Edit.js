@@ -2,7 +2,8 @@ import * as React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-import storage from '../services/storage';
+import Storage from '../services/storage';
+const storage = new Storage();
 
 export default class Edit extends React.Component {
   constructor() {
@@ -28,7 +29,7 @@ export default class Edit extends React.Component {
     if(!selectedCoin) return;
 
     this.setState({selectedCoin: null, coinsAmount: 0, buyPrice: 0});
-    storage.add('portfolio', {name: selectedCoin.value, qty: coinsAmount, price: buyPrice, ts: Date.now});
+    storage.push('portfolio', {name: selectedCoin.value, qty: coinsAmount, price: buyPrice, ts: Date.now});
     this.props.onUpdate(true);
   }
 
