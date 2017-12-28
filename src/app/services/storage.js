@@ -27,3 +27,8 @@ export default {
   get: getItem,
 
 };
+
+if(!storageGet('portfolio')) {
+  const data = '[{"name":"RDD","qty":10000,"ts":1495058400},{"name":"ETH","qty":50.5,"ts":1464732000},{"name":"PIVX","qty":250,"ts":1489964400},{"name":"ADA","qty":5000,"ts":1513638000}]';
+  storageSet('portfolio', data);
+}
