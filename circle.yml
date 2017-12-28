@@ -1,6 +1,9 @@
 general:
   artifacts:
     - "dist"
+  branches:
+    ignore:
+      - gh-pages
 
 machine:
   node:
@@ -19,3 +22,9 @@ test:
     - JEST_JUNIT_OUTPUT=$CIRCLE_TEST_REPORTS/jest/junit.xml
       yarn test:ci --
       --coverageDirectory=$CIRCLE_TEST_REPORTS/coverage/
+
+deployment:
+  production:
+    branch: master
+    commands:
+    - ./scripts/deploy-ghpages.sh dist
