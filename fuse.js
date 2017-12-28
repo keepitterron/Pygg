@@ -27,6 +27,7 @@ Sparky.task('config', () => {
       CSSPlugin(),
       WebIndexPlugin({
         template: 'src/index.html',
+        path: './',
       }),
       isProduction &&
         QuantumPlugin({
@@ -51,11 +52,11 @@ Sparky.task('default', ['clean', 'copy', 'config'], () => {
 Sparky.task('copy', () => Sparky.src('./icons/*.svg', { base: './src' }).dest('./dist'));
 
 Sparky.task('clean', () => Sparky.src('dist/').clean('dist/'));
-Sparky.task('prod-env', ['clean'], () => {
+Sparky.task('prod-env', ['clean', 'copy'], () => {
   isProduction = true;
 });
 Sparky.task('dist', ['prod-env', 'config'], () => {
   // comment out to prevent dev server from running
-  fuse.dev();
+  // fuse.dev();
   return fuse.run();
 });
