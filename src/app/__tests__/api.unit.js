@@ -6,6 +6,14 @@ let api;
 describe('Api', () => {
   let adapter;
   let storage;
+
+  it('uses defaults', () => {
+    const api = new Api();
+    expect(api.api).not.toBeUndefined();
+    expect(api.storage).not.toBeUndefined();
+    expect(api.mapper).not.toBeUndefined();
+  });
+
   beforeEach(() => {
     const fn = jest.fn().mockReturnValue(Promise.resolve());
     adapter = {

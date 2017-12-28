@@ -42,6 +42,6 @@
     "validate-commit-msg": "^2.14.0"
   },
   "jest": {
-    "setupFiles": ["./src/app/__tests__/setup/mocks.js"]
+    "setupFiles": ["./setup/mocks.js"]
   }
 }

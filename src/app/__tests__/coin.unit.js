@@ -6,6 +6,10 @@ describe('Coin Service', () => {
       testPrice(84.0987, '84');
     })
 
+    it('formats small numbers', () => {
+      testPrice(0.00987, '0.0099');
+    })
+
     it('removes unnecessary zeros', () => {
       testPrice(7.00, '7');
     })

@@ -23,9 +23,9 @@ export default class Api {
 
   promiseFromStorage(suffix) {
     const data = this.storage.fetch(suffix);
-    if(!data) return;
+    if(!data || !data.data) return;
     if(this.isStale(data.ts, this.mapper.expire(suffix))) return;
-    if(data.data) return Promise.resolve(data.data);
+    return Promise.resolve(data.data);
   }
 
   withStorage(suffix) {
