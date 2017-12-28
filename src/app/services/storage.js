@@ -25,5 +25,4 @@ export default {
   save: setItem,
   add: addItem,
   get: getItem,
-
 };
