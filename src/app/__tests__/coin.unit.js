@@ -6,6 +6,10 @@ describe('Coin Service', () => {
       testPrice(84.0987, '84');
     })
 
+    it('formats small numbers', () => {
+      testPrice(0.00987, '0.0099');
+    })
+
     it('removes unnecessary zeros', () => {
       testPrice(7.00, '7');
     })
@@ -80,20 +84,41 @@ describe('Coin Service', () => {
 
       expect(result).toEqual(expected);
     });
+
+    it('sums qty when coin has multiple entries', () => {
+      const data = [
+        {name:'FOO', qty: 5, baz: 'bar'},
+        {name:'BAR', qty: 15, baz: 'foo'},
+        {name:'FOO', qty: 5},
+      ];
+      const expected = {
+        FOO: {name:'FOO', qty: 10, baz: 'bar'},
+        BAR: {name:'BAR', qty: 15, baz: 'foo'},
+      };
+      const result = portfolioMapper(data);
+
+      expect(result).toEqual(expected);
+    });
   });
 
   describe('coinDataAggregate', () => {
+    it('does nothing when no data is provided', () => {
+      expect(coinDataAggregate([])).toEqual([]);
+    })
+
     it('returns an arrays of coins with price and value, sorted by value', () => {
       const dataPoints = [
         [
           {Name:'FOO', baz: 5},
           {Name:'BAR', baz: 5},
           {Name:'BAZ', baz: 5},
+          {Name:'ETH'},
         ],
         {
           FOO: {EUR: 10},
           BAR: {EUR: 1},
           BAZ: {EUR: 100},
+          ETH: {},
         },
         {
           FOO: {qty: 5},
@@ -107,6 +132,7 @@ describe('Coin Service', () => {
         {'coin': {'Name': 'BAZ', 'baz': 5, 'qty': 10}, 'price': 100, 'value': 1000},
         {'coin': {'Name': 'FOO', 'baz': 5, 'qty': 5}, 'price': 10, 'value': 50},
         {'coin': {'Name': 'BAR', 'baz': 5, 'qty': 15}, 'price': 1, 'value': 15},
+        {'coin': {'Name': 'ETH', 'qty': 0}, 'price': 0, 'value': 0},
       ];
 
       expect(result).toEqual(expected);

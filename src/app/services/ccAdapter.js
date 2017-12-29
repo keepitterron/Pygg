@@ -2,9 +2,19 @@ import Mapper from './mapper';
 const cryptocompareApi = require('cryptocompare');
 const mapper = new Mapper();
 
+const CURRENCY = 'EUR';
+const LIMIT = 15;
 const coinsIterable = ({Data}) => Object.keys(Data).map((key) => Data[key]);
-const coinList = () => cryptocompareApi.coinList().then(coinsIterable);
-const coinPrice = (coins) => cryptocompareApi.priceMulti(coins, ['EUR']);
-const coinDailyHisto = (coin) => cryptocompareApi.histoDay(coin, 'EUR', { limit: 15});
 
-export default { mapper, coinList, coinPrice, coinDailyHisto, coinsIterable }
+export function cryptocompareAdapter(api = cryptocompareApi) {
+  const coinList = () => api.coinList().then(coinsIterable);
+  const coinPrice = (coins) => api.priceMulti(coins, [CURRENCY]);
+  const coinDailyHisto = (coin) => api.histoDay(coin, CURRENCY, { limit: LIMIT});
+
+  return { mapper, coinList, coinPrice, coinDailyHisto }
+}
+
+cryptocompareAdapter.CURRENCY = CURRENCY;
+cryptocompareAdapter.LIMIT = LIMIT;
+
+export default cryptocompareAdapter();

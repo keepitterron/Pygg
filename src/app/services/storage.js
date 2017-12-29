@@ -1,28 +1,32 @@
 const STORAGE_KEY = 'nl.blockfolio.keepitterron';
+export default class Storage {
+  constructor(storageAdapter = localStorage) {
+    this.storage = storageAdapter;
+  }
 
-const storageGet = (collection) => {
-  const key = `${STORAGE_KEY}.${collection}`;
-  return localStorage.getItem(key);
+  save(key, collection) {
+    return this._set(key, JSON.stringify(collection));
+  }
+
+  fetch(key) {
+    return JSON.parse(this._get(key));
+  }
+
+  push(key, item) {
+    const currencies = this.fetch('portfolio');
+    currencies.push(item);
+    return this.save(key, currencies);
+  }
+
+  _get(collection) {
+    const key = `${STORAGE_KEY}.${collection}`;
+    return this.storage.getItem(key);
+  }
+
+  _set(collection, document) {
+    const key = `${STORAGE_KEY}.${collection}`;
+    return this.storage.setItem(key, document);
+  }
 }
-const storageSet = (collection, document) => {
-  const key = `${STORAGE_KEY}.${collection}`;
-  return localStorage.setItem(key, document);
-}
 
-const getItem = (key) => JSON.parse(storageGet(key));
-const setItem = (key, collection) => storageSet(key, JSON.stringify(collection));
-const addItem = (key, item) => {
-  const currencies = getItem('portfolio');
-  // const el = currencies.find(({coin}) => coin === item.name);
-  // if(el) return; // TODO edit with object merge?
-
-  currencies.push(item);
-  storageSet(key, JSON.stringify(currencies));
-}
-
-export default {
-  key: STORAGE_KEY,
-  save: setItem,
-  add: addItem,
-  get: getItem,
-};
+Storage.STORAGE_KEY = STORAGE_KEY;
