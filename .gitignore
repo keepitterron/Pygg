@@ -3,3 +3,4 @@ cache
 dist
 coverage
 junit.xml
+.DS_Store
