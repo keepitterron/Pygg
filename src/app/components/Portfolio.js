@@ -3,6 +3,7 @@ import Coins from './Coins';
 import Modal from './Modal';
 import Edit from './Edit';
 import WalletHeader from './WalletHeader';
+import PortfolioEmpty from './PortfolioEmpty';
 import { coinsValue } from '../services/coin';
 import Api from '../services/api';
 
@@ -22,6 +23,11 @@ export default class Portfolio extends React.Component {
     api.list().then(mapCoins).then((coinList) => this.setState({coinList}));
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { coins } = nextProps;
+    if(!coins.length) this.setState({modalOpen: true});
+  }
+
   modalOpen(modalOpen) {
     this.setState({modalOpen});
   }
@@ -39,6 +45,7 @@ export default class Portfolio extends React.Component {
       <WalletHeader value={value}>
         <button className="btn" onClick={this.onModalOpen}>+coin</button>
       </WalletHeader>
+      {!coins.length && <PortfolioEmpty />}
       <Coins coins={coins} />
       <Modal isOpen={this.state.modalOpen} onClose={this.onModalClose}>
         {this.state.coinList && <Edit coinList={this.state.coinList} onUpdate={onUpdate} />}

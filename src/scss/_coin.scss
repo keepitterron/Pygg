@@ -1,5 +1,9 @@
 .coins {
   padding: 1rem;
+
+  &__empty {
+    padding: 1rem;
+  }
 }
 
 .coin {
@@ -87,6 +91,10 @@
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+    &__empty {
+      grid-column: 1 / -1;
+    }
   }
 
   .coin {

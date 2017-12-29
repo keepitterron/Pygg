@@ -26,12 +26,22 @@ describe('Storage', () => {
     expect(result).toBe('bar');
   });
 
-  it('push data to collection', () => {
-    const data = JSON.stringify(['foo']);
-    const expectedDoc = JSON.stringify(['foo', 'bar']);
-    adapter.getItem = jest.fn().mockReturnValue(data);
-    storage.push('foo', 'bar');
+  describe('push', () => {
+    it('push data to collection', () => {
+      const data = JSON.stringify(['item1']);
+      const expectedDoc = JSON.stringify(['item1', 'item2']);
+      adapter.getItem = jest.fn().mockReturnValue(data);
+      storage.push('foo', 'item2');
 
-    expect(adapter.setItem).toBeCalledWith(key, expectedDoc);
+      expect(adapter.setItem).toBeCalledWith(key, expectedDoc);
+    });
+
+    it('push data to empty collection', () => {
+      const expectedDoc = JSON.stringify(['bar']);
+      adapter.getItem = jest.fn().mockReturnValue(null);
+      storage.push('foo', 'bar');
+
+      expect(adapter.setItem).toBeCalledWith(key, expectedDoc);
+    });
   });
 });
