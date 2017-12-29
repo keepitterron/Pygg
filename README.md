@@ -6,6 +6,10 @@ Your crypto coins portfolio tracker.
 ## Run in development mode
 `yarn start`
 
+## Tests
+`yarn test`
+[![codecov](https://codecov.io/gh/keepitterron/Pygg/branch/master/graph/badge.svg?token=QjUBNz58Td)](https://codecov.io/gh/keepitterron/Pygg)
+
 ## Roadmap app
 - [ ] Make use of buy unitary price
 - [ ] Coin details page

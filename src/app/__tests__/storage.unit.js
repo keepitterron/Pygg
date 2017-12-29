@@ -6,6 +6,22 @@ const key = `${Storage.STORAGE_KEY}.foo`;
 let storage;
 let adapter;
 describe('Storage', () => {
+  describe('end to end', () => {
+    it('creates, adds and retrieves from same collection', () => {
+      const key = 'my.key';
+      const expected = ['foo', 'bar'];
+      const db = new Storage();
+      const beforeInit = db.fetch(key);
+      db.save(key, ['foo']);
+      db.push(key, 'bar');
+      const res = db.fetch(key);
+
+      expect(beforeInit).toBe(null);
+      expect(res).toEqual(expected);
+    });
+
+  })
+
   beforeEach(() => {
     adapter = {
       getItem: jest.fn().mockReturnValue(data),
