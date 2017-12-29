@@ -13,7 +13,7 @@ export default class Storage {
   }
 
   push(key, item) {
-    const currencies = this.fetch('portfolio');
+    const currencies = this.fetch(key) || [];
     currencies.push(item);
     return this.save(key, currencies);
   }
