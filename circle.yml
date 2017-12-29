@@ -18,6 +18,8 @@ dependencies:
 test:
   pre:
     - yarn lint
+  post:
+    - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
   override:
     - JEST_JUNIT_OUTPUT=$CIRCLE_TEST_REPORTS/jest/junit.xml
       yarn test:ci --
