@@ -1,4 +1,4 @@
-import { formatPrice, coinModel, coinsValue, portfolioMapper, coinDataAggregate } from '../services/coin';
+import { formatPrice, coinModel, coinsValue, portfolioMapper, coinDataAggregate, calculateGain } from '../services/coin';
 
 describe('Coin Service', () => {
   describe('formatPrice', () => {
@@ -44,6 +44,7 @@ describe('Coin Service', () => {
         qty: 10,
         CoinName: 'brobot',
         Name: 'BRO',
+        buyPrice: 0.001,
       };
       const result = coinModel(coinData, 4.07);
       const expected = {
@@ -51,8 +52,9 @@ describe('Coin Service', () => {
         name: coinData.CoinName,
         label: coinData.Name,
         icon: 'BRO.svg',
-        value: '4.07',
-        total: '41',
+        value: 4.07,
+        buyPrice: 0.001,
+        total: 40.7,
       };
 
       expect(result).toEqual(expected);
@@ -121,7 +123,7 @@ describe('Coin Service', () => {
           ETH: {},
         },
         {
-          FOO: {qty: 5},
+          FOO: {qty: 5, price: 0.01},
           BAR: {qty: 15},
           BAZ: {qty: 10},
         },
@@ -129,13 +131,29 @@ describe('Coin Service', () => {
 
       const result = coinDataAggregate(dataPoints);
       const expected = [
-        {'coin': {'Name': 'BAZ', 'baz': 5, 'qty': 10}, 'price': 100, 'value': 1000},
-        {'coin': {'Name': 'FOO', 'baz': 5, 'qty': 5}, 'price': 10, 'value': 50},
-        {'coin': {'Name': 'BAR', 'baz': 5, 'qty': 15}, 'price': 1, 'value': 15},
-        {'coin': {'Name': 'ETH', 'qty': 0}, 'price': 0, 'value': 0},
+        {'coin': {'Name': 'BAZ', 'baz': 5, 'qty': 10, buyPrice: 0}, 'price': 100, 'value': 1000},
+        {'coin': {'Name': 'FOO', 'baz': 5, 'qty': 5, buyPrice: 0.01}, 'price': 10, 'value': 50},
+        {'coin': {'Name': 'BAR', 'baz': 5, 'qty': 15, buyPrice: 0}, 'price': 1, 'value': 15},
+        {'coin': {'Name': 'ETH', 'qty': 0, buyPrice: 0}, 'price': 0, 'value': 0},
       ];
 
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('calculateGain', () => {
+    it('checks the performance of a coin from buy to current: gain', () => {
+      const expected = {upTrend: true, changePrice: '500', changePercent: 100};
+      const res = calculateGain(10, 5, 100);
+
+      expect(res).toEqual(expected);
+    });
+
+    it('checks the performance of a coin from buy to current: loss', () => {
+      const expected = {upTrend: false, changePrice: '-25', changePercent: -20};
+      const res = calculateGain(1, 1.25, 100);
+
+      expect(res).toEqual(expected);
     });
   });
 });
