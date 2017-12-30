@@ -7,17 +7,20 @@ Your crypto coins portfolio tracker.
 `yarn start`
 
 ## Tests
-`yarn test`
 [![codecov](https://codecov.io/gh/keepitterron/Pygg/branch/master/graph/badge.svg?token=QjUBNz58Td)](https://codecov.io/gh/keepitterron/Pygg)
+`yarn test`
 
-## Roadmap app
-- [ ] Make use of buy unitary price
+## Roadmap app to public beta
+- [x] Make use of buy unitary price
 - [ ] Coin details page
+- [ ] Coin delete
+- [ ] Coin edit
+- [ ] Settings page (with base currency reference [eur, usd, btc])
 
 ## Roadmap Dev
-- [ ] Deploy as github page
-- [ ] Cleanup css
-- [ ] Unit Test coverage
+- [x] Deploy as github page
+- [x] Cleanup css
+- [x] Unit Test coverage
 - [ ] Snapshot testing
 - [ ] GraphQL
 - [ ] Save data on remote for portability
