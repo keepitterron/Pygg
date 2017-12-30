@@ -42,6 +42,32 @@ body {
   }
 }
 
+.pygg {
+  &__logo {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    width: 100px;
+    opacity: .3;
+
+    &-antennas{
+      stroke: $white;
+    }
+
+    circle {
+      fill: $white;
+    }
+
+    &-trace{
+      fill: $white;
+    }
+
+    &-triangles{
+      stroke: $white;
+    }
+  }
+}
+
 @media only screen and (max-width: $mq-S)  {
   html {
     font-size: 90%;

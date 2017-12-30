@@ -6,6 +6,7 @@ import WalletHeader from './WalletHeader';
 import PortfolioEmpty from './PortfolioEmpty';
 import { coinsValue } from '../services/coin';
 import Api from '../services/api';
+import Logo from './Logo';
 
 const api = new Api();
 const mapCoins = (coins) => coins.map(coinsToSelectFormat);
@@ -50,6 +51,7 @@ export default class Portfolio extends React.Component {
       <Modal isOpen={this.state.modalOpen} onClose={this.onModalClose}>
         {this.state.coinList && <Edit coinList={this.state.coinList} onUpdate={onUpdate} />}
       </Modal>
+      <Logo className="pygg__logo" alt="pygg icon by @nonhotempo" />
     </div>
   }
 }

@@ -11,7 +11,7 @@ export default function Coin({coinData}) {
 
   return (<div className="coin">
     <div className="coin__icon">
-      <CoinIcon icon={Coin.icon} fallback="/icons/GBYTE.svg" />
+      <CoinIcon icon={Coin.icon} fallback="/icons/pygg.svg" />
     </div>
     <div className="coin__info">
       <h2>{Coin.label}</h2>

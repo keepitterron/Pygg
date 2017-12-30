@@ -1,4 +1,5 @@
 # Pygg
+![Pygg](src/icons/pygg.svg)
 Your crypto coins portfolio tracker.
 
 > Pygg is an orange colored clay commonly used during the Middle Ages as a cheap material for pots to store money, called pygg pots or pygg jars. [Piggy Bank](https://en.wikipedia.org/wiki/Piggy_bank)
