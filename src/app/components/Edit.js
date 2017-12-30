@@ -49,7 +49,7 @@ export default class Edit extends React.Component {
           <input type="number" step="any" placeholder="Amount" name="coinsAmount" onChange={this.handleInput} />
         </div>
         <div className="edit__field">
-          <label>Unitary price (BTC)</label>
+          <label>Unitary price (EUR)</label>
           <input type="number" step="any" placeholder="Price" name="buyPrice" onChange={this.handleInput} />
         </div>
         <button className="btn" onClick={this.addCoin}>save</button>

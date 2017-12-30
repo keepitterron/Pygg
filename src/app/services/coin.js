@@ -25,7 +25,9 @@ function coinDataAggregate(dataPoints) {
   if(!coinData) return [];
 
   return coinData.map((coin) => {
-    coin.qty = (portfolio[coin.Name] || {}).qty || 0;
+    const { qty, price: buyPrice } = (portfolio[coin.Name] || {})
+    coin.qty = qty || 0;
+    coin.buyPrice = buyPrice || 0;
     const price = priceData[coin.Name].EUR || 0;
     return {
       coin,
@@ -41,9 +43,24 @@ function coinModel(coinData, price) {
     name: coinData.CoinName,
     label: coinData.Name,
     icon: `${coinData.Name}.svg`,
-    value: formatPrice(price),
-    total: formatPrice(price * coinData.qty),
+    value: price,
+    buyPrice: coinData.buyPrice,
+    total: price * coinData.qty,
   };
 }
 
-export { formatPrice, coinModel, coinsValue, coinDataAggregate, portfolioMapper }
+function calculateGain(current, buy, qty) {
+  const totalBuy = buy * qty;
+  const totalCurrent = current * qty;
+  const upTrend = totalCurrent >= totalBuy;
+  const changePrice = formatPrice(totalCurrent - totalBuy);
+  const changePercent = changePrice / totalBuy * 100;
+
+  return {
+    upTrend,
+    changePrice,
+    changePercent,
+  }
+}
+
+export { formatPrice, coinModel, coinsValue, coinDataAggregate, portfolioMapper, calculateGain }
