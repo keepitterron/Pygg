@@ -39,9 +39,12 @@
     "jest-junit": "^3.4.1",
     "node-sass": "^4.7.2",
     "prettier-eslint-cli": "^4.6.1",
+    "uglify-js": "^3.3.4",
     "validate-commit-msg": "^2.14.0"
   },
   "jest": {
-    "setupFiles": ["./setup/mocks.js"]
+    "setupFiles": [
+      "./setup/mocks.js"
+    ]
   }
 }
