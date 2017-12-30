@@ -29,4 +29,4 @@ deployment:
   production:
     branch: master
     commands:
-    - ./scripts/deploy-ghpages.sh dist
+    - bash ./scripts/deploy-ghpages.sh dist
