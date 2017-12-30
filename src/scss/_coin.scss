@@ -13,8 +13,8 @@
   text-align: center;
   padding: 0 0 0 1rem;
   border-radius: 8px;
-  background: linear-gradient(45deg, #4f5b7e, #252f48);
-  box-shadow: 0 4px 12px transparentize(#000000, .6);
+  background: $gradient-blue;
+  box-shadow: $box-shadow;
   margin: 0 0 1rem;
   font-size: 1.5rem;
   overflow: hidden;
@@ -22,7 +22,7 @@
   &--wallet {
     min-width: 100%;
     padding: 1rem;
-    background: linear-gradient(45deg, #957fed, #fc74b0);
+    background: $gradient-pink;
 
     h2 {
       text-transform: uppercase;
@@ -82,6 +82,36 @@
     font-size: 1rem;
     color: $grey;
   }
+
+  &__gain {
+    text-transform: uppercase;
+    font-size: .9rem;
+    color: $grey;
+    display: none;
+
+    &.-up {
+      color: $green;
+
+      span:before {
+        content: '+';
+      }
+    }
+
+    &.-down {
+      color: $red;
+    }
+
+    &.-price .coin__gain--percent { display: none; }
+    &.-percent .coin__gain--price { display: none; }
+  }
+}
+
+@media only screen and (min-width: $mq-S)  {
+  .coin {
+    &__gain {
+      display: block;
+    }
+  }
 }
 
 @media only screen and (min-width: $mq-M)  {
@@ -103,7 +133,7 @@
     padding: 1rem 0 0;
 
     .btn {
-      background: #252f48;
+      background: $blue;
     }
 
     &__chart circle {

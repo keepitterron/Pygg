@@ -1,7 +1,18 @@
-$blue: #11273D;
+$blue: #252f48;
+$blue--contrast1: #3b466a;
+$blue--contrast: #4f5b7e;
+$white: #f0f2f5;
 $grey: #aba8a8;
+$green: #5ff557;
+$red: #f68f9f;
+$pink: #fc74b0;
+$pink--contrast: #957fed;
 
 $mq-XS: 500px;
 $mq-S: 750px;
 $mq-M: 900px;
 $mq-L: 1300px;
+
+$gradient-blue: linear-gradient(45deg, $blue--contrast, $blue);
+$gradient-pink: linear-gradient(45deg, $pink--contrast, $pink);
+$box-shadow: 0 4px 12px transparentize(#000000, .6);

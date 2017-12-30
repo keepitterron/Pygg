@@ -2,8 +2,8 @@
   padding: 1rem;
   min-width: 25rem;
   border-radius: 8px;
-  background: linear-gradient(45deg, #4f5b7e, #252f48);
-  box-shadow: 0 4px 12px transparentize(#000000, .6);
+  background: $gradient-blue;
+  box-shadow: $box-shadow;
 
   h2 {
     margin: 0 0 1rem;
