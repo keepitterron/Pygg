@@ -13,9 +13,9 @@ export default class Storage {
   }
 
   push(key, item) {
-    const currencies = this.fetch(key) || [];
-    currencies.push(item);
-    return this.save(key, currencies);
+    const documents = this.fetch(key) || [];
+    documents.push(item);
+    return this.save(key, documents);
   }
 
   _get(collection) {
