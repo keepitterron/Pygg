@@ -18,6 +18,9 @@
   margin: 0 0 1rem;
   font-size: 1.5rem;
   overflow: hidden;
+  position: relative;
+
+  &:hover .coin__remove { display: block; }
 
   &--wallet {
     min-width: 100%;
@@ -27,6 +30,14 @@
     h2 {
       text-transform: uppercase;
     }
+  }
+
+  &__remove {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
   }
 
   &__chart, &__info, &__data { flex: 1; }

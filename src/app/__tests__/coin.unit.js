@@ -41,6 +41,7 @@ describe('Coin Service', () => {
   describe('coinModel', () => {
     it('returns a coin model, from coin data and price', () => {
       const coinData = {
+        id: 'aa00',
         qty: 10,
         CoinName: 'brobot',
         Name: 'BRO',
@@ -48,6 +49,7 @@ describe('Coin Service', () => {
       };
       const result = coinModel(coinData, 4.07);
       const expected = {
+        id: coinData.id,
         qty: coinData.qty,
         name: coinData.CoinName,
         label: coinData.Name,
@@ -111,9 +113,9 @@ describe('Coin Service', () => {
     it('returns an arrays of coins with price and value, sorted by value', () => {
       const dataPoints = [
         [
-          {Name:'FOO', baz: 5},
-          {Name:'BAR', baz: 5},
-          {Name:'BAZ', baz: 5},
+          {Name:'FOO', CoinName: 'foo', baz: 5},
+          {Name:'BAR', CoinName: 'bar', baz: 5},
+          {Name:'BAZ', CoinName: 'baz', baz: 5},
           {Name:'ETH'},
         ],
         {
@@ -123,18 +125,18 @@ describe('Coin Service', () => {
           ETH: {},
         },
         {
-          FOO: {qty: 5, price: 0.01},
-          BAR: {qty: 15},
-          BAZ: {qty: 10},
+          FOO: {qty: 5, price: 0.01, id: 1},
+          BAR: {qty: 15, id: 2},
+          BAZ: {qty: 10, id: 3},
         },
       ];
 
       const result = coinDataAggregate(dataPoints);
       const expected = [
-        {'coin': {'Name': 'BAZ', 'baz': 5, 'qty': 10, buyPrice: 0}, 'price': 100, 'value': 1000},
-        {'coin': {'Name': 'FOO', 'baz': 5, 'qty': 5, buyPrice: 0.01}, 'price': 10, 'value': 50},
-        {'coin': {'Name': 'BAR', 'baz': 5, 'qty': 15, buyPrice: 0}, 'price': 1, 'value': 15},
-        {'coin': {'Name': 'ETH', 'qty': 0, buyPrice: 0}, 'price': 0, 'value': 0},
+        {id: 3, 'label': 'BAZ', name: 'baz', icon: 'BAZ.svg', 'qty': 10, buyPrice: 0, 'value': 100, 'total': 1000},
+        {id: 1, 'label': 'FOO', name: 'foo', icon: 'FOO.svg', 'qty': 5, buyPrice: 0.01, 'value': 10, 'total': 50},
+        {id: 2, 'label': 'BAR', name: 'bar', icon: 'BAR.svg', 'qty': 15, buyPrice: 0, 'value': 1, 'total': 15},
+        {id: undefined, 'label': 'ETH', name: undefined, icon: 'ETH.svg', 'qty': 0, buyPrice: 0, 'value': 0, 'total': 0},
       ];
 
       expect(result).toEqual(expected);
