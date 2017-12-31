@@ -36,9 +36,18 @@ body {
   color: $white;
   transition: all .25s ease-in;
 
-  &:hover {
+  &--pink {
+    background: $gradient-pink;
+  }
+
+  &:hover:enabled {
     transform: translateY(-1px);
     box-shadow: $box-shadow;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $grey;
   }
 }
 
@@ -49,12 +58,13 @@ body {
     left: 1rem;
     width: 100px;
     opacity: .3;
+    cursor: pointer;
 
     &-antennas{
       stroke: $white;
     }
 
-    circle {
+    &-circle {
       fill: $white;
     }
 
@@ -64,6 +74,19 @@ body {
 
     &-triangles{
       stroke: $white;
+    }
+  }
+
+  &__about {
+    text-align: center;
+
+    h2 {
+      margin: 0 0 1rem;
+    }
+
+    svg {
+      margin: 2rem 0 0;
+      max-width: 200px;
     }
   }
 }
