@@ -25,20 +25,18 @@ function coinDataAggregate(dataPoints) {
   if(!coinData) return [];
 
   return coinData.map((coin) => {
-    const { qty, price: buyPrice } = (portfolio[coin.Name] || {})
+    const { id, qty, price: buyPrice } = (portfolio[coin.Name] || {})
+    coin.id = id;
     coin.qty = qty || 0;
     coin.buyPrice = buyPrice || 0;
     const price = priceData[coin.Name].EUR || 0;
-    return {
-      coin,
-      price,
-      value: price * coin.qty,
-    }
-  }).sort((a, b) => parseInt(b.value) - parseInt(a.value));
+    return coinModel(coin, price);
+  }).sort((a, b) => parseInt(b.total) - parseInt(a.total));
 }
 
 function coinModel(coinData, price) {
   return {
+    id: coinData.id,
     qty: coinData.qty,
     name: coinData.CoinName,
     label: coinData.Name,

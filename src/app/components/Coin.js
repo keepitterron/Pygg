@@ -3,29 +3,29 @@ import * as React from 'react';
 import Chart from './Chart';
 import CoinIcon from './CoinIcon';
 import PriceGain from './PriceGain';
-import { coinModel, formatPrice } from '../services/coin';
+import { formatPrice } from '../services/coin';
 
-export default function Coin({coinData}) {
-  const { coin, price } = coinData;
-  const Coin = coinModel(coin, price);
+export default function Coin({coin, onRemove}) {
+  const removeCoin = () => onRemove(coin.id);
 
   return (<div className="coin">
+    <a className="coin__remove" title="delete coin" onClick={removeCoin}>&times;</a>
     <div className="coin__icon">
-      <CoinIcon icon={Coin.icon} fallback="/icons/pygg.svg" />
+      <CoinIcon icon={coin.icon} fallback="/icons/pygg.svg" />
     </div>
     <div className="coin__info">
-      <h2>{Coin.label}</h2>
-      <p>({formatPrice(Coin.value)}&euro;)</p>
+      <h2>{coin.label}</h2>
+      <p>({formatPrice(coin.value)}&euro;)</p>
     </div>
     <div className="coin__data">
-      <h2>{formatPrice(Coin.total)}&euro;</h2>
+      <h2>{formatPrice(coin.total)}&euro;</h2>
       <div className="coin__qty">
-        ({formatPrice(Coin.qty)} coins)
+        ({formatPrice(coin.qty)} coins)
       </div>
-      <PriceGain current={Coin.value} buy={Coin.buyPrice} qty={Coin.qty} />
+      <PriceGain current={coin.value} buy={coin.buyPrice} qty={coin.qty} />
     </div>
     <div className="coin__chart">
-      <Chart coin={Coin.label} />
+      <Chart coin={coin.label} />
     </div>
   </div>);
 }
