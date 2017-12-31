@@ -2,10 +2,7 @@ import * as React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-import Storage from '../services/storage';
-const storage = new Storage();
-
-export default class Edit extends React.Component {
+export default class AddCoin extends React.Component {
   constructor() {
     super();
     this.state = {coinList: [], selectedCoin: null, coinsAmount: 0, buyPrice: 0};
@@ -29,8 +26,12 @@ export default class Edit extends React.Component {
     if(!selectedCoin) return;
 
     this.setState({selectedCoin: null, coinsAmount: 0, buyPrice: 0});
-    storage.push('portfolio', {name: selectedCoin.value, qty: coinsAmount, price: buyPrice, ts: Date.now});
-    this.props.onUpdate(true);
+    this.props.onAdd({name: selectedCoin.value, qty: coinsAmount, price: buyPrice});
+  }
+
+  isValid() {
+    const { selectedCoin, coinsAmount, buyPrice } = this.state;
+    return selectedCoin && coinsAmount > 0 && buyPrice > 0;
   }
 
   render() {
@@ -52,7 +53,7 @@ export default class Edit extends React.Component {
           <label>Unitary price (EUR)</label>
           <input type="number" step="any" placeholder="Price" name="buyPrice" onChange={this.handleInput} />
         </div>
-        <button className="btn" onClick={this.addCoin}>save</button>
+        <button className="btn btn--pink" onClick={this.addCoin} disabled={!this.isValid()}>save</button>
       </div>}
     </div>
   }
