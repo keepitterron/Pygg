@@ -65,7 +65,7 @@ describe('Coin Service', () => {
 
   describe('coinsValue', () => {
     it('returns the total value', () => {
-      const coinData = [{value: 500, bar: []}, {value: 500}, {foo: 'bar', value: 500}];
+      const coinData = [{total: 500, bar: []}, {total: 500}, {foo: 'bar', total: 500}];
 
       const result = coinsValue(coinData);
       const expected = '1.5k';

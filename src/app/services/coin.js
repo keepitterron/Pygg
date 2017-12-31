@@ -8,7 +8,7 @@ function formatPrice(price) {
 }
 
 function coinsValue(coins) {
-  const value = coins.reduce((total, coin) => total += coin.value, 0);
+  const value = coins.reduce((total, coin) => total += coin.total, 0);
   return formatPrice(value);
 }
 
